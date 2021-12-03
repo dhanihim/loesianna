@@ -1,0 +1,21 @@
+<h3>Biodata</h3>
+
+<%= render 'form', client: @client %>
+
+<center><h5>Unggahan Berkas</h5></center>
+<div class="container" id="tableBox">
+	<div class="table-responsive">
+		<table class="table">
+			<tbody>
+		    <% @personal_files.each do |personal_file| %>
+		      <tr>
+		        <td><%= personal_file.name %></td>
+		        <td><%= personal_file.description %></td>
+		        <td style="width: 5%;"><%= link_to 'Unggah', personal_file, class:"btn btn-secondary" %></td>
+		        <td style="width: 5%;"><%= link_to 'Unduh', edit_personal_file_path(personal_file), class:"btn btn-success" %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	</div>
+</div>

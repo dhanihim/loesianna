@@ -1,0 +1,27 @@
+<%= form_with(model: client_personal_file) do |form| %>
+  <% if client_personal_file.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(client_personal_file.errors.count, "error") %> prohibited this client_personal_file from being saved:</h2>
+
+      <ul>
+        <% client_personal_file.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :link %>
+    <%= form.text_field :link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

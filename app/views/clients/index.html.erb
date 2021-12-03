@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h3>Daftar Klien</h3>
+<br>
+
+<div class="container" id="tableBox">
+  <div class='table-responsive'>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nama</th>
+          <th>NIK</th>
+          <th>TTL</th>
+          <th>Address</th>
+          <th colspan="1"></th>
+        </tr>
+      </thead>
+
+      <% @counter = 1 %>
+      <tbody>
+        <% @clients.each do |client| %>
+          <tr>
+            <td>
+              <%= @counter %>
+              <% @counter += 1%>
+            </td>
+            <td><%= client.name %></td>
+            <td><%= client.uid %></td>
+            <td><%= client.birthplace %>, <%= client.birthdate %></td>
+            <td><%= client.address %>, <%= client.city %></td>
+            <td><%= link_to 'Detail', client, class:'btn btn-info' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>

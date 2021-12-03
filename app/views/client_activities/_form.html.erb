@@ -1,0 +1,67 @@
+<%= form_with(model: client_activity) do |form| %>
+  <% if client_activity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(client_activity.errors.count, "error") %> prohibited this client_activity from being saved:</h2>
+
+      <ul>
+        <% client_activity.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :object %>
+    <%= form.text_field :object %>
+  </div>
+
+  <div class="field">
+    <%= form.label :associate %>
+    <%= form.text_field :associate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :assistant %>
+    <%= form.text_field :assistant %>
+  </div>
+
+  <div class="field">
+    <%= form.label :activity_expired %>
+    <%= form.datetime_select :activity_expired %>
+  </div>
+
+  <div class="field">
+    <%= form.label :certificate_expired %>
+    <%= form.datetime_select :certificate_expired %>
+  </div>
+
+  <div class="field">
+    <%= form.label :serial_number %>
+    <%= form.text_field :serial_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :offline_location %>
+    <%= form.text_field :offline_location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deleted %>
+    <%= form.number_field :deleted %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

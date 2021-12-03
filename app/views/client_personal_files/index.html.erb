@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Client Personal Files</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Link</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @client_personal_files.each do |client_personal_file| %>
+      <tr>
+        <td><%= client_personal_file.link %></td>
+        <td><%= client_personal_file.description %></td>
+        <td><%= link_to 'Show', client_personal_file %></td>
+        <td><%= link_to 'Edit', edit_client_personal_file_path(client_personal_file) %></td>
+        <td><%= link_to 'Destroy', client_personal_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Client Personal File', new_client_personal_file_path %>

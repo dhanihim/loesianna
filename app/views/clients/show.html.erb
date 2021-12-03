@@ -1,0 +1,65 @@
+<div style="margin-bottom: 100px;">
+
+  <div class="container" id="tableBox">
+    <div class='table-responsive'>
+      <table class="table">
+        <tbody>
+            <tr>
+              <td>Nama</td>
+              <td>:</td>
+              <td><%= @client.name %></td>
+            </tr>
+            <tr>
+              <td>NIK</td>
+              <td>:</td>
+              <td><%= @client.uid %></td>
+            </tr>
+            <tr>
+              <td>Tempat Tanggal Lahir</td>
+              <td>:</td>
+              <td><%= @client.birthplace %>, <%= @client.birthdate %></td>
+            </tr>
+            <tr>
+              <td>Alamat</td>
+              <td>:</td>
+              <td><%= @client.address %>, <%= @client.city %></td>
+            </tr>
+            <tr>
+              <td>No. Telepon</td>
+              <td>:</td>
+              <td><%= @client.phone %></td>
+            </tr>
+            <tr>
+              <td>Status</td>
+              <td>:</td>
+              <td><%= @client.status %></td>
+            </tr>
+        </tbody>
+      </table>
+      <%= link_to 'Detail Berkas Pribadi', edit_client_path(@client), class:'btn btn-block btn-info', target:'_blank' %>
+    </div>
+  </div>
+
+  <center><h5>Riwayat Kegiatan</h5></center>
+  <div class="container" id="tableBox">
+    <div class='table-responsive'>
+      <%= link_to 'Buat Kegiatan Baru', new_client_activity_path(:client_id => @client), class:'btn btn-success' %>
+      <br>
+      <br>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Nama Kegiatan</th>
+          <th>Tanggal</th>
+          <th>Status</th>
+          <th colspan="1"></th>
+        </tr>
+      </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

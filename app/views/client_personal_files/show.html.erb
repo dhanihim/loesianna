@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @client_personal_file.link %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @client_personal_file.description %>
+</p>
+
+<%= link_to 'Edit', edit_client_personal_file_path(@client_personal_file) %> |
+<%= link_to 'Back', client_personal_files_path %>

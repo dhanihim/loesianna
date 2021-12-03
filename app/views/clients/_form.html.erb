@@ -1,0 +1,82 @@
+<div class="container" id="tableBox">
+
+<%= form_with(model: client) do |form| %>
+  <% if client.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(client.errors.count, "error") %> prohibited this client from being saved:</h2>
+
+      <ul>
+        <% client.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <div class="field form-group">
+        <%= form.label :name, "Nama" %>
+        <%= form.text_field :name , class:"form-control" %>
+      </div>
+
+      <div class="field form-group">
+        <%= form.label :uid, "NIK" %>
+        <%= form.text_field :uid , class:"form-control"  %>
+      </div>
+
+      <div class="field form-group">
+        <%= form.label :birthdate, "Tanggal Lahir" %>
+        <%= form.date_field :birthdate, class:'form-control', required:'true' %>
+      </div>
+
+      <div class="field form-group">
+        <%= form.label :birthplace, "Kota Lahir" %>
+        <%= form.text_field :birthplace , class:"form-control"  %>
+      </div>
+
+      <div class="field form-group">
+        <%= form.label :address, "Alamat" %>
+        <%= form.text_field :address , class:"form-control"  %>
+      </div>
+
+      <div class="field form-group">
+        <%= form.label :city, "Kota" %>
+        <%= form.text_field :city , class:"form-control"  %>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-sm-12">
+      <div class="field form-group">
+        <%= form.label :spouse, "Nama Pasangan" %>
+        <%= form.text_field :spouse , class:"form-control"  %>
+      </div>
+      <div class="field form-group">
+        <%= form.label :spouse_uid, "NIK Pasangan" %>
+        <%= form.text_field :spouse_uid , class:"form-control"  %>
+      </div>
+
+      <div class="field form-group">
+        <%= form.label :phone, "No. Telepon" %>
+        <%= form.text_field :phone , class:"form-control"  %>
+      </div>
+
+      <div class="field form-group">
+        <%= form.label :status %>
+        <%= form.text_field :status , class:"form-control"  %>
+      </div>
+
+      <div class="field form-group">
+        <%= form.label :description, "Deskripsi" %>
+        <%= form.text_area :description , class:"form-control", style:"height:100px"  %>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <div class="actions">
+    <%= form.submit "Perbarui Data", class:"btn btn-block btn-secondary" %>
+  </div>
+<% end %>
+
+</div>

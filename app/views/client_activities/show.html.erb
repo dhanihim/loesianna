@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Object:</strong>
+  <%= @client_activity.object %>
+</p>
+
+<p>
+  <strong>Associate:</strong>
+  <%= @client_activity.associate %>
+</p>
+
+<p>
+  <strong>Assistant:</strong>
+  <%= @client_activity.assistant %>
+</p>
+
+<p>
+  <strong>Activity expired:</strong>
+  <%= @client_activity.activity_expired %>
+</p>
+
+<p>
+  <strong>Certificate expired:</strong>
+  <%= @client_activity.certificate_expired %>
+</p>
+
+<p>
+  <strong>Serial number:</strong>
+  <%= @client_activity.serial_number %>
+</p>
+
+<p>
+  <strong>Offline location:</strong>
+  <%= @client_activity.offline_location %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @client_activity.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @client_activity.status %>
+</p>
+
+<p>
+  <strong>Deleted:</strong>
+  <%= @client_activity.deleted %>
+</p>
+
+<%= link_to 'Edit', edit_client_activity_path(@client_activity) %> |
+<%= link_to 'Back', client_activities_path %>

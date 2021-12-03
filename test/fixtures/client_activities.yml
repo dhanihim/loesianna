@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  object: MyString
+  associate: MyString
+  assistant: MyString
+  activity_expired: 2021-11-06 11:38:08
+  certificate_expired: 2021-11-06 11:38:08
+  serial_number: MyString
+  offline_location: MyString
+  description: MyString
+  status: MyString
+  deleted: 1
+
+two:
+  object: MyString
+  associate: MyString
+  assistant: MyString
+  activity_expired: 2021-11-06 11:38:08
+  certificate_expired: 2021-11-06 11:38:08
+  serial_number: MyString
+  offline_location: MyString
+  description: MyString
+  status: MyString
+  deleted: 1

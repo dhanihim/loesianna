@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @personal_file.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @personal_file.description %>
+</p>
+
+<%= link_to 'Edit', edit_personal_file_path(@personal_file) %> |
+<%= link_to 'Back', personal_files_path %>

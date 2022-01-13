@@ -2,7 +2,7 @@
     <center><h2>Notaris Loesianna</h2></center>
 </div>
 
-<%= form_with url: clients_path, method: :get do |form| %>
+<%= form_with url: searchresult_clients_url, method: :get do |form| %>
 <center>
   <%= form.text_field :query, placeholder:"Masukkan nama atau NIK klien", class:"form-control", style:"text-align:center", autocomplete:"off", autofocus:"true" %>
   <br>

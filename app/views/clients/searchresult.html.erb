@@ -3,8 +3,6 @@
 <h3>Daftar Klien</h3>
 <br>
 
-<%= link_to "Tambah Baru", new_client_path, class:"btn btn-primary" %>
-
 <div class="container" id="tableBox">
   <div class='table-responsive'>
     <table class="table">
@@ -15,7 +13,7 @@
           <th>NIK</th>
           <th>TTL</th>
           <th>Address</th>
-          <th colspan="2" style="width: 5%"></th>
+          <th colspan="1"></th>
         </tr>
       </thead>
 
@@ -32,7 +30,6 @@
             <td><%= client.birthplace %>, <%= client.birthdate %></td>
             <td><%= client.address %>, <%= client.city %></td>
             <td><%= link_to 'Detail', client, class:'btn btn-info' %></td>
-            <td><%= link_to 'X', client, method: :delete, data: { confirm: 'Hapus data klien?' }, class:'btn btn-danger' %></td>
           </tr>
         <% end %>
       </tbody>

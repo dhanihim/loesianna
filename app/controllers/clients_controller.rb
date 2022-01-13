@@ -1,8 +1,7 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: %i[ show edit update destroy ]
 
-  # GET /clients or /clients.json
-  def index
+  def searchresult
     @query = params[:query]
 
     if(!@query.nil?)
@@ -10,6 +9,13 @@ class ClientsController < ApplicationController
     else
       @clients = Client.where("deleted = 0")
     end
+  end
+
+  # GET /clients or /clients.json
+  def index
+    @clients = Client.all
+
+    @newclient = Client.new
   end
 
   # GET /clients/1 or /clients/1.json
@@ -36,7 +42,7 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       if @client.save
-        format.html { redirect_to @client, notice: "Client was successfully created." }
+        format.html { redirect_to clients_url, notice: "Client was successfully created." }
         format.json { render :show, status: :created, location: @client }
       else
         format.html { render :new, status: :unprocessable_entity }

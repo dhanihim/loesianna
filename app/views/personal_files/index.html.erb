@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Personal Files</h1>
+<h3>Personal Files</h3>
+<br>
 
-<table>
+<%= link_to 'Tambah Baru', new_personal_file_path, class:"btn btn-primary" %>
+<div class="table-responsive" id="tableBox">
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -23,7 +26,7 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
 
-<%= link_to 'New Personal File', new_personal_file_path %>

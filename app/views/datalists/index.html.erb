@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Datalists</h1>
+<h3>Datalists</h3>
+<br>
 
+<%= link_to 'New Datalist', new_datalist_path, class:"btn btn-primary" %>
 <div class="table-responsive" id="tableBox">
 <table class="table">
   <thead>
@@ -27,6 +29,3 @@
   </tbody>
 </table>
 </div>
-<br>
-
-<%= link_to 'New Datalist', new_datalist_path %>

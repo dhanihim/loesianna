@@ -25,7 +25,7 @@ class PersonalFilesController < ApplicationController
 
     respond_to do |format|
       if @personal_file.save
-        format.html { redirect_to @personal_file, notice: "Personal file was successfully created." }
+        format.html { redirect_to personal_files_url, notice: "Personal file was successfully created." }
         format.json { render :show, status: :created, location: @personal_file }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class PersonalFilesController < ApplicationController
   def update
     respond_to do |format|
       if @personal_file.update(personal_file_params)
-        format.html { redirect_to @personal_file, notice: "Personal file was successfully updated." }
+        format.html { redirect_to personal_files_url, notice: "Personal file was successfully updated." }
         format.json { render :show, status: :ok, location: @personal_file }
       else
         format.html { render :edit, status: :unprocessable_entity }

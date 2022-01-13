@@ -1,67 +1,222 @@
-<%= form_with(model: client_activity) do |form| %>
-  <% if client_activity.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(client_activity.errors.count, "error") %> prohibited this client_activity from being saved:</h2>
+<div class="container" id="tableBox">
 
-      <ul>
-        <% client_activity.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<% if request.original_url.include?("edit") && params[:activity_id].nil? %>
+  <%= form_with(model: client_activity) do |form| %>
+    <% if client_activity.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(client_activity.errors.count, "error") %> prohibited this client_activity from being saved:</h2>
+
+        <ul>
+          <% client_activity.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-md-12 col-xs-12">
+        <div class="field form-group">
+          <%= form.label :client_id, "Klien"%>
+          <%= form.text_field :client_id, class:"form-control", disabled:"true", value: client_activity.client.name  %>
+        </div>
+      </div>  
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-xs-12">
+        <div class="field form-group">
+          <%= form.label :activity_id, "Aktifitas"%>
+          <%= form.text_field :activity_id , class:"form-control", disabled:"true", value: client_activity.activity.name   %>
+        </div>
+      </div>  
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-xs-12">
+        <div class="field form-group">
+          <%= form.label :object, "Obyek"%>
+          <%= form.text_field :object , class:"form-control", required:'true'  %>
+        </div>
+
+        <div class="field form-group">
+          <%= form.label :associate, "YBS / Rekanan / Bank" %>
+          <%= form.text_field :associate , class:"form-control"  %>
+        </div>
+
+        <div class="field form-group">
+          <%= form.label :assistant, "Asisten" %>
+          <%= form.text_field :assistant , class:"form-control"  %>
+        </div>
+
+        <div class="field form-group">
+          <%= form.label :activity_expired, "Tanggal Kadaluarsa Kegiatan" %>
+          <%= form.date_field :activity_expired, class:'form-control', required:'true' %>
+        </div>
+
+        <div class="field form-group">
+          <%= form.label :certificate_expired, "Tanggal Kadaluarsa Sertifikat" %>
+          <%= form.date_field :certificate_expired, class:'form-control', required:'true' %>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xs-12">
+        <div class="field form-group">
+          <%= form.label :created_at, "Tanggal Akta" %>
+          <%= form.date_field :certificate_expired, :value => Time.now.strftime('%Y-%m-%d'), class:'form-control', required:'true', disabled:'true' %>
+        </div>
+
+        <div class="field form-group">
+          <%= form.label :serial_number, "Nomor Akta" %>
+          <%= form.text_field :serial_number , class:"form-control"  %>
+        </div>
+
+        <div class="field form-group">
+          <%= form.label :offline_location, "Lokasi Berkas Offline" %>
+          <%= form.text_field :offline_location , class:"form-control" %>
+        </div>
+
+        <div class="field form-group">
+          <%= form.label :description, "Keterangan" %>
+          <%= form.text_area :description , class:"form-control", style:"height:150px"  %>
+        </div>
+
+        <div class="field form-group">
+          <%= form.text_field :status, value:1, class:"form-control", type:"hidden"  %>
+        </div>
+
+        <div class="field form-group">
+          <%= form.number_field :deleted, value:0, class:"form-control", type:"hidden" %>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <br>
+        <div class="actions">
+          <%= form.submit "Ubah Kegiatan", class:"btn btn-primary btn-block"%>
+        </div>
+      </div>
     </div>
   <% end %>
+<% else %>
+  <% if params[:activity_id].nil? %>
+    <h5 style="color:black; text-align:right">Halaman 1 dari 4</h5>
+    <br>
+    <%= form_with url: new_client_activity_path, method: :get do |form| %>
+    <center>
+      <div class="field form-group">
+      <%= form.number_field :client_id, value:params[:client_id], class:"form-control", type:"hidden" %>
+      </div>
+      <div class="field form-group">
+        <%= form.collection_select :activity_id, Activity.all, :id, :name, {}, {class:"form-control"} %>
+      </div>
+      <br>
 
-  <div class="field">
-    <%= form.label :object %>
-    <%= form.text_field :object %>
-  </div>
+      <%= form.submit "Muat Daftar Data dan Proses", class:"btn btn-secondary" %>
+    </center>
+    <% end %>
+  <% else %>
+    <h5 style="color:black; text-align:right">Halaman 2 dari 4</h5>
+    <br>
+    <%= form_with(model: client_activity) do |form| %>
+      <% if client_activity.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(client_activity.errors.count, "error") %> prohibited this client_activity from being saved:</h2>
 
-  <div class="field">
-    <%= form.label :associate %>
-    <%= form.text_field :associate %>
-  </div>
+          <ul>
+            <% client_activity.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <div class="field">
-    <%= form.label :assistant %>
-    <%= form.text_field :assistant %>
-  </div>
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <div class="field form-group">
+            <%= form.label :client_id, "Klien"%>
+             <%= form.text_field :client_id, value: params[:client_id], class:"form-control", type:"hidden"  %>
+            <%= form.text_field :client_name, value:Client.find(params[:client_id]).name , class:"form-control", disabled:"true"  %>
+          </div>
+        </div>  
+      </div>
 
-  <div class="field">
-    <%= form.label :activity_expired %>
-    <%= form.datetime_select :activity_expired %>
-  </div>
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <div class="field form-group">
+            <%= form.label :activity_id, "Aktifitas"%>
+            <%= form.text_field :activity_id , class:"form-control", value:params[:activity_id], type:"hidden" %>
+            <%= form.text_field :activity_name , class:"form-control", value:Activity.find(params[:activity_id]).name , disabled:"true"   %>
+          </div>
+        </div>  
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6 col-xs-12">
+          <div class="field form-group">
+            <%= form.label :object, "Obyek"%>
+            <%= form.text_field :object , class:"form-control", required:'true'  %>
+          </div>
 
-  <div class="field">
-    <%= form.label :certificate_expired %>
-    <%= form.datetime_select :certificate_expired %>
-  </div>
+          <div class="field form-group">
+            <%= form.label :associate, "YBS / Rekanan / Bank" %>
+            <%= form.text_field :associate , class:"form-control"  %>
+          </div>
 
-  <div class="field">
-    <%= form.label :serial_number %>
-    <%= form.text_field :serial_number %>
-  </div>
+          <div class="field form-group">
+            <%= form.label :assistant, "Asisten" %>
+            <%= form.text_field :assistant , class:"form-control"  %>
+          </div>
 
-  <div class="field">
-    <%= form.label :offline_location %>
-    <%= form.text_field :offline_location %>
-  </div>
+          <div class="field form-group">
+            <%= form.label :activity_expired, "Tanggal Kadaluarsa Kegiatan" %>
+            <%= form.date_field :activity_expired, class:'form-control', required:'true' %>
+          </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
+          <div class="field form-group">
+            <%= form.label :certificate_expired, "Tanggal Kadaluarsa Sertifikat" %>
+            <%= form.date_field :certificate_expired, class:'form-control', required:'true' %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
+        <div class="col-md-6 col-xs-12">
+          <div class="field form-group">
+            <%= form.label :created_at, "Tanggal Akta" %>
+            <%= form.date_field :certificate_expired, :value => Time.now.strftime('%Y-%m-%d'), class:'form-control', required:'true', disabled:'true' %>
+          </div>
 
-  <div class="field">
-    <%= form.label :deleted %>
-    <%= form.number_field :deleted %>
-  </div>
+          <div class="field form-group">
+            <%= form.label :serial_number, "Nomor Akta" %>
+            <%= form.text_field :serial_number , class:"form-control"  %>
+          </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+          <div class="field form-group">
+            <%= form.label :offline_location, "Lokasi Berkas Offline" %>
+            <%= form.text_field :offline_location , class:"form-control" %>
+          </div>
+
+          <div class="field form-group">
+            <%= form.label :description, "Keterangan" %>
+            <%= form.text_area :description , class:"form-control", style:"height:150px"  %>
+          </div>
+
+          <div class="field form-group">
+            <%= form.text_field :status, value:1, class:"form-control", type:"hidden"  %>
+          </div>
+
+          <div class="field form-group">
+            <%= form.number_field :deleted, value:0, class:"form-control", type:"hidden" %>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <br>
+          <div class="actions">
+            <%= form.submit "Lanjutkan", class:"btn btn-primary btn-block"%>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 <% end %>
+</div>

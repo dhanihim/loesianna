@@ -63,7 +63,7 @@
 
       <div class="field form-group">
         <%= form.label :status %>
-        <%= form.text_field :status , class:"form-control"  %>
+        <%= form.select(:status , ["Perorangan", "Badan Hukum - PT", "Badan Hukum - Koperasi", "Badan Hukum - Yayasan", "Badan Usaha - CV", "Badan Usaha - UD"], {} ,{class:"form-control"})  %>
       </div>
 
       <div class="field form-group">

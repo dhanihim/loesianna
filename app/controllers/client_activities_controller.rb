@@ -1,5 +1,25 @@
-class ClientActivitiesController < ApplicationController
+ class ClientActivitiesController < ApplicationController
   before_action :set_client_activity, only: %i[ show edit update destroy ]
+
+  def datalist
+    if(!params[:activity_id].nil?)
+        checking = ClientActivityDatalist.where("client_activity_id = ?", params[:id]).count
+        if(checking==0)
+          @datalist = Datalist.where("activity_id = ?", params[:activity_id])
+
+          @datalist.each do |datalist|
+            @client_activity_datalist = ClientActivityDatalist.new
+            @client_activity_datalist.link = "test/c/test.jpg"
+            @client_activity_datalist.client_activity_id = params[:id]
+            @client_activity_datalist.datalist_id = datalist.id
+
+            @client_activity_datalist.save
+          end
+        end
+    end
+
+    @client_activity_datalist = ClientActivityDatalist.where("client_activity_id = ?", params[:id])
+  end
 
   # GET /client_activities or /client_activities.json
   def index
@@ -25,7 +45,7 @@ class ClientActivitiesController < ApplicationController
 
     respond_to do |format|
       if @client_activity.save
-        format.html { redirect_to @client_activity, notice: "Client activity was successfully created." }
+        format.html { redirect_to datalist_client_activity_path(@client_activity, :activity_id => @client_activity.activity_id), notice: "Client activity was successfully created." }
         format.json { render :show, status: :created, location: @client_activity }
       else
         format.html { render :new, status: :unprocessable_entity }

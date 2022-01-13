@@ -1,0 +1,1 @@
+json.partial! "client_activity_datalists/client_activity_datalist", client_activity_datalist: @client_activity_datalist

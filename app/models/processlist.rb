@@ -1,0 +1,2 @@
+class Processlist < ApplicationRecord
+end

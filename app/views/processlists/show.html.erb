@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @processlist.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @processlist.description %>
+</p>
+
+<%= link_to 'Edit', edit_processlist_path(@processlist) %> |
+<%= link_to 'Back', processlists_path %>

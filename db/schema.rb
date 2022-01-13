@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_06_054339) do
+ActiveRecord::Schema.define(version: 2021_12_28_045104) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
@@ -36,6 +36,26 @@ ActiveRecord::Schema.define(version: 2021_11_06_054339) do
     t.integer "activity_id"
     t.index ["activity_id"], name: "index_client_activities_on_activity_id"
     t.index ["client_id"], name: "index_client_activities_on_client_id"
+  end
+
+  create_table "client_activity_datalists", force: :cascade do |t|
+    t.string "link"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "datalist_id"
+    t.integer "client_activity_id"
+    t.index ["client_activity_id"], name: "index_client_activity_datalists_on_client_activity_id"
+    t.index ["datalist_id"], name: "index_client_activity_datalists_on_datalist_id"
+  end
+
+  create_table "client_activity_processlists", force: :cascade do |t|
+    t.date "target_start"
+    t.date "actual_start"
+    t.string "status"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "client_personal_files", force: :cascade do |t|
@@ -66,12 +86,29 @@ ActiveRecord::Schema.define(version: 2021_11_06_054339) do
     t.string "spouse_uid"
   end
 
+  create_table "datalists", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "deleted", default: 0
+    t.integer "activity_id"
+    t.index ["activity_id"], name: "index_datalists_on_activity_id"
+  end
+
   create_table "personal_files", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "deleted", default: 0
+  end
+
+  create_table "processlists", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

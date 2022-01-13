@@ -1,0 +1,37 @@
+<%= form_with(model: client_activity_processlist) do |form| %>
+  <% if client_activity_processlist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(client_activity_processlist.errors.count, "error") %> prohibited this client_activity_processlist from being saved:</h2>
+
+      <ul>
+        <% client_activity_processlist.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :target_start %>
+    <%= form.date_select :target_start %>
+  </div>
+
+  <div class="field">
+    <%= form.label :actual_start %>
+    <%= form.date_select :actual_start %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

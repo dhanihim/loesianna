@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @datalist.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @datalist.description %>
+</p>
+
+<%= link_to 'Edit', edit_datalist_path(@datalist) %> |
+<%= link_to 'Back', datalists_path %>

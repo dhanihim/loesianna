@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Target start:</strong>
+  <%= @client_activity_processlist.target_start %>
+</p>
+
+<p>
+  <strong>Actual start:</strong>
+  <%= @client_activity_processlist.actual_start %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @client_activity_processlist.status %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @client_activity_processlist.description %>
+</p>
+
+<%= link_to 'Edit', edit_client_activity_processlist_path(@client_activity_processlist) %> |
+<%= link_to 'Back', client_activity_processlists_path %>

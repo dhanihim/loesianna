@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Client Activity Processlists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Target start</th>
+      <th>Actual start</th>
+      <th>Status</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @client_activity_processlists.each do |client_activity_processlist| %>
+      <tr>
+        <td><%= client_activity_processlist.target_start %></td>
+        <td><%= client_activity_processlist.actual_start %></td>
+        <td><%= client_activity_processlist.status %></td>
+        <td><%= client_activity_processlist.description %></td>
+        <td><%= link_to 'Show', client_activity_processlist %></td>
+        <td><%= link_to 'Edit', edit_client_activity_processlist_path(client_activity_processlist) %></td>
+        <td><%= link_to 'Destroy', client_activity_processlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Client Activity Processlist', new_client_activity_processlist_path %>

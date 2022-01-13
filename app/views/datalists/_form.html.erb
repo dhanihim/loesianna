@@ -1,0 +1,32 @@
+<%= form_with(model: datalist) do |form| %>
+  <% if datalist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(datalist.errors.count, "error") %> prohibited this datalist from being saved:</h2>
+
+      <ul>
+        <% datalist.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.label :activity_id, "Aktifitas" %>
+    <%= form.collection_select :activity_id, Activity.order(:name), :id, :name, {}, {class:"form-control"} %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :name, "Nama" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :description, "Deskripsi" %>
+    <%= form.text_field :description, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

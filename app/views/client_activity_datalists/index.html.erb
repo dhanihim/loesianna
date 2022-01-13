@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Client Activity Datalists</h1>
+
+<div class="table-responsive" id="tableBox">
+<table class="table">
+  <thead>
+    <tr>
+      <th>Client Activity ID</th>
+      <th>Datalist</th>
+      <th>Link</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @client_activity_datalists.each do |client_activity_datalist| %>
+      <tr>
+        <td><%= client_activity_datalist.client_activity.id %></td>
+        <td><%= client_activity_datalist.datalist.name %></td>
+        <td><%= client_activity_datalist.link %></td>
+        <td><%= client_activity_datalist.description %></td>
+        <td><%= link_to 'Show', client_activity_datalist %></td>
+        <td><%= link_to 'Edit', edit_client_activity_datalist_path(client_activity_datalist) %></td>
+        <td><%= link_to 'Destroy', client_activity_datalist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<br>
+
+<%= link_to 'New Client Activity Datalist', new_client_activity_datalist_path %>

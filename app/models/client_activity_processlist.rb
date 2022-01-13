@@ -1,0 +1,2 @@
+class ClientActivityProcesslist < ApplicationRecord
+end

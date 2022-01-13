@@ -1,0 +1,2 @@
+module ClientActivityDatalistsHelper
+end

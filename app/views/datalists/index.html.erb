@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Datalists</h1>
+
+<div class="table-responsive" id="tableBox">
+<table class="table">
+  <thead>
+    <tr>
+      <th>Aktifitas</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @datalists.each do |datalist| %>
+      <tr>
+        <td><%= datalist.activity.name %></td>
+        <td><%= datalist.name %></td>
+        <td><%= datalist.description %></td>
+        <td><%= link_to 'Show', datalist %></td>
+        <td><%= link_to 'Edit', edit_datalist_path(datalist) %></td>
+        <td><%= link_to 'Destroy', datalist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
+
+<%= link_to 'New Datalist', new_datalist_path %>

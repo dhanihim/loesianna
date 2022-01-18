@@ -1,6 +1,55 @@
-<h1>Editing Activity</h1>
+<h3>Editing Activity</h3>
 
+<br>
 <%= render 'form', activity: @activity %>
 
-<%= link_to 'Show', @activity %> |
-<%= link_to 'Back', activities_path %>
+<h5>Daftar Data yang Diperlukan</h5>
+
+<%= link_to 'Tambah Baru', new_datalist_path(:activity_id => params[:id]), class:"btn btn-primary" %>
+<div class="table-responsive" id="tableBox">
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nama</th>
+      <th>Deskripsi</th>
+      <th colspan="1" style="width:5%"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @datalists.each do |datalist| %>
+      <tr>
+        <td><%= datalist.name %></td>
+        <td><%= datalist.description %></td>
+        <td><%= link_to 'X', datalist, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+
+<h5>Daftar Proses yang Diperlukan</h5>
+
+<%= link_to 'Tambah Baru', new_processlist_path(:activity_id => params[:id]), class:"btn btn-primary" %>
+<div class="table-responsive" id="tableBox">
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nama</th>
+      <th>Deskripsi</th>
+      <th colspan="1" style="width:5%"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @processlists.each do |processlist| %>
+      <tr>
+        <td><%= processlist.name %></td>
+        <td><%= processlist.description %></td>
+        <td><%= link_to 'X', processlist, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

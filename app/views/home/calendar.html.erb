@@ -1,0 +1,164 @@
+<div id="tableBox">
+	<h5 style="color:black">Daftar Kegiatan Terlambat</h5>
+
+	<div class="table-responsive">
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th>Klien</th>
+	      <th>Obyek</th>
+	      <th>Proses</th>
+	      <th>Rencana Proses</th>
+	      <th>Deskripsi</th>
+	      <th colspan="2" style="width:5%"></th>
+	    </tr>
+	  </thead>
+
+	  <tbody>
+	    <% @client_activity_processlist_late.each do |client_activity_processlist| %>
+	     <% if client_activity_processlist.client_activity.deleted == 0 %>
+	      <tr>
+	        <td><%= client_activity_processlist.client_activity.client.name %></td>
+	        <td><%= client_activity_processlist.client_activity.object %></td>
+	        <td><%= client_activity_processlist.processlist.name %></td>
+	        <td><%= client_activity_processlist.target_start %></td>
+	        <td><%= client_activity_processlist.description %></td>
+	        <td><%= link_to 'Selesaikan', finish_client_activity_processlist_path(client_activity_processlist), class:"btn btn-success" %></td>
+	        <td><%= link_to 'Tunda', edit_client_activity_processlist_path(client_activity_processlist), class:"btn btn-warning" %></td>
+	      </tr>
+	     <% end %>
+	    <% end %>
+	  </tbody>
+	</table>
+	</div>
+
+	<br>
+	<br>
+	<h5 style="color:black">Daftar Kegiatan 7 Hari ke Depan</h5>
+
+	<div class="table-responsive">
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th>Klien</th>
+	      <th>Obyek</th>
+	      <th>Proses</th>
+	      <th>Rencana Proses</th>
+	      <th>Deskripsi</th>
+	      <th colspan="2" style="width:5%"></th>
+	    </tr>
+	  </thead>
+
+	  <tbody>
+	    <% @client_activity_processlist_upcoming.each do |client_activity_processlist| %>
+	     <% if client_activity_processlist.client_activity.deleted == 0 %>
+	      <tr>
+	        <td><%= client_activity_processlist.client_activity.client.name %></td>
+	        <td><%= client_activity_processlist.client_activity.object %></td>
+	        <td><%= client_activity_processlist.processlist.name %></td>
+	        <td><%= client_activity_processlist.target_start %></td>
+	        <td><%= client_activity_processlist.description %></td>
+	        <td><%= link_to 'Selesaikan', client_activity_processlist, class:"btn btn-success" %></td>
+	        <td><%= link_to 'Tunda', edit_client_activity_processlist_path(client_activity_processlist), class:"btn btn-warning" %></td>
+	      </tr>
+	     <% end %>
+	    <% end %>
+	  </tbody>
+	</table>
+	</div>
+
+	<br>
+	<br>
+	<div class="row">
+		<div class="col-md-8">
+		<h5 style="color:black">Berkas yang Butuh Pembaruan < 90 Hari</h5>
+
+			<div class="table-responsive">
+			<table class="table">
+			  <thead>
+			    <tr>
+			      <th>Klien</th>
+			      <th>Pengurusan</th>
+			      <th>Obyek</th>
+			      <th>Kadaluarsa</th>
+			      <th colspan="1" style="width:5%"></th>
+			    </tr>
+			  </thead>
+
+			  <tbody>
+			    <% @client_activity_certificate.each do |client_activity_certificate| %>
+			     <% if client_activity_certificate.deleted == 0 %>
+			      <tr>
+			        <td><%= client_activity_certificate.client.name %></td>
+			        <td><%= client_activity_certificate.activity.name %></td>
+			        <td><%= client_activity_certificate.object %></td>
+			        <td><%= client_activity_certificate.certificate_expired %></td>
+			        <td><%= link_to 'Lihat', client_activity_certificate, class:"btn btn-info", class:"btn btn-info" %></td>
+			      </tr>
+			     <% end %>
+			    <% end %>
+			  </tbody>
+			</table>
+			</div>
+			<br>
+			<br>
+
+			<h5 style="color:black">Kegiatan yang Butuh Pembaruan < 90 Hari</h5>
+
+			<div class="table-responsive">
+			<table class="table">
+			  <thead>
+			    <tr>
+			      <th>Klien</th>
+			      <th>Pengurusan</th>
+			      <th>Obyek</th>
+			      <th>Kadaluarsa</th>
+			      <th colspan="1" style="width:5%"></th>
+			    </tr>
+			  </thead>
+
+			  <tbody>
+			    <% @client_activity_activity.each do |client_activity_activity| %>
+			     <% if client_activity_activity.deleted == 0 %>
+			      <tr>
+			        <td><%= client_activity_activity.client.name %></td>
+			        <td><%= client_activity_activity.activity.name %></td>
+			        <td><%= client_activity_activity.object %></td>
+			        <td><%= client_activity_activity.activity_expired %></td>
+			        <td><%= link_to 'Lihat', client_activity_activity, class:"btn btn-info", class:"btn btn-info" %></td>
+			      </tr>
+			     <% end %>
+			    <% end %>
+			  </tbody>
+			</table>
+			</div>	
+		</div>
+		<div class="col-md-4">
+			<h5 style="color:black">Daftar Ulang Tahun Klien</h5>
+			<div class='table-responsive'>
+			    <table class="table">
+			      <thead>
+			        <tr>
+			          <th>Nama</th>
+			          <th>TTL</th>
+			          <th>Alamat</th>
+			          <th colspan="2" style="width: 5%"></th>
+			        </tr>
+			      </thead>
+
+			      <% @counter = 1 %>
+			      <tbody>
+			        <% @client_birthday.each do |client| %>
+			          <tr>
+			            <td><%= client.name %></td>
+			            <td><%= client.birthplace %>, <%= client.birthdate %></td>
+			            <td><%= client.address %>, <%= client.city %></td>
+			          </tr>
+			        <% end %>
+			      </tbody>
+			    </table>
+			  </div>
+		</div>
+	</div>
+</div>
+

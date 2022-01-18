@@ -1,37 +1,34 @@
-<%= form_with(model: client_activity_processlist) do |form| %>
-  <% if client_activity_processlist.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(client_activity_processlist.errors.count, "error") %> prohibited this client_activity_processlist from being saved:</h2>
+<div class="container" id="tableBox">
+  <%= form_with(model: client_activity_processlist) do |form| %>
+    <% if client_activity_processlist.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(client_activity_processlist.errors.count, "error") %> prohibited this client_activity_processlist from being saved:</h2>
 
-      <ul>
-        <% client_activity_processlist.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% client_activity_processlist.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field form-group">
+      <%= form.label :target_start %>
+      <%= form.date_field :target_start, class:'form-control', required:'true' %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.text_field :status , class:"form-control", type:"hidden", value:"0" %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :description %>
+      <%= form.text_area :description , class:"form-control", autocomplete:"off" %>
+    </div>
+
+    <br>
+    <div class="actions">
+      <%= form.submit "Tambahkan Data", class:"btn btn-primary" %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :target_start %>
-    <%= form.date_select :target_start %>
-  </div>
-
-  <div class="field">
-    <%= form.label :actual_start %>
-    <%= form.date_select :actual_start %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

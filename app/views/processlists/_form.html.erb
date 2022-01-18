@@ -11,17 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="field form-group">
+    <%= form.label :activity_id, "Aktifitas" %>
+    <%= form.collection_select :activity_id, Activity.order(:name), :id, :name, {:selected => params[:activity_id]}, {class:"form-control"} %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
+    <%= form.label :name, "Nama" %>
+    <%= form.text_field :name, class: "form-control", autocomplete:"off", required:"true", autofocus:"true" %>
+  </div>
+
+  <div class="field form-group">
     <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.text_field :description, class: "form-control", autocomplete:"off"%>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Tambahkan Data", class:"btn btn-primary" %>
   </div>
 <% end %>

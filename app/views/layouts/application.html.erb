@@ -21,6 +21,11 @@
 
     <%= render "home/header" %>
     <div class="container" style="margin-top:20px;">
+      <% if notice %>
+        <br>
+        <%= render 'home/alert' %> 
+      <% end %>
+      <br>
       <%= yield %>
     </div>
   </body>

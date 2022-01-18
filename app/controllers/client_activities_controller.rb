@@ -1,7 +1,14 @@
  class ClientActivitiesController < ApplicationController
   before_action :set_client_activity, only: %i[ show edit update destroy ]
 
+  def summary
+    @client_activity = ClientActivity.where("id = ?", params[:id])
+  end
+
   def datalist
+    @status_array = ["Belum Dimulai","Proses","Selesai","Terlambat"]
+    @color_array = ["grey","blue","green","red"]
+    
     if(!params[:activity_id].nil?)
         checking = ClientActivityDatalist.where("client_activity_id = ?", params[:id]).count
         if(checking==0)
@@ -9,7 +16,6 @@
 
           @datalist.each do |datalist|
             @client_activity_datalist = ClientActivityDatalist.new
-            @client_activity_datalist.link = "test/c/test.jpg"
             @client_activity_datalist.client_activity_id = params[:id]
             @client_activity_datalist.datalist_id = datalist.id
 
@@ -21,9 +27,34 @@
     @client_activity_datalist = ClientActivityDatalist.where("client_activity_id = ?", params[:id])
   end
 
+  def processlist
+    @status_array = ["Belum Dimulai","Proses","Selesai","Terlambat"]
+    @color_array = ["grey","blue","green","red"]
+
+    if(!params[:activity_id].nil?)
+        checking = ClientActivityProcesslist.where("client_activity_id = ?", params[:id]).count
+        if(checking==0)
+          @processlist = Processlist.where("activity_id = ?", params[:activity_id])
+
+          @processlist.each do |processlist|
+            @client_activity_processlist = ClientActivityProcesslist.new
+            @client_activity_processlist.client_activity_id = params[:id]
+            @client_activity_processlist.processlist_id = processlist.id
+
+            @client_activity_processlist.save
+          end
+        end
+    end
+
+    @client_activity_processlist = ClientActivityProcesslist.where("client_activity_id = ?", params[:id])
+  end
+
   # GET /client_activities or /client_activities.json
   def index
-    @client_activities = ClientActivity.all
+    @client_activities = ClientActivity.where("deleted = 0")
+
+    @status_array = ["Tidak Aktif","Proses","Selesai","Dihapus"]
+    @color_array = ["grey","blue","green","red"]
   end
 
   # GET /client_activities/1 or /client_activities/1.json
@@ -37,6 +68,11 @@
 
   # GET /client_activities/1/edit
   def edit
+    @status_array = ["Belum Dimulai","Proses","Selesai","Terlambat"]
+    @color_array = ["grey","blue","green","red"]
+    
+    @client_activity_datalist = ClientActivityDatalist.where("client_activity_id = ?", params[:id])
+    @client_activity_processlist = ClientActivityProcesslist.where("client_activity_id = ?", params[:id])
   end
 
   # POST /client_activities or /client_activities.json
@@ -69,7 +105,9 @@
 
   # DELETE /client_activities/1 or /client_activities/1.json
   def destroy
-    @client_activity.destroy
+    @client_activity.deleted = 1
+    @client_activity.save
+
     respond_to do |format|
       format.html { redirect_to client_activities_url, notice: "Client activity was successfully destroyed." }
       format.json { head :no_content }

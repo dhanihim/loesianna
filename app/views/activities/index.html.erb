@@ -1,15 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Activities</h1>
+<h3>Activities</h3>
+<br>
+
+<%= link_to 'Tambah Baru', new_activity_path, class:"btn btn-primary" %>
 
 <div class="container" id="tableBox">
-
-<table class="table table-striped">
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
       <th>Description</th>
-      <th colspan="3"></th>
+      <th colspan="2" style="width:5%"></th>
     </tr>
   </thead>
 
@@ -18,9 +20,8 @@
       <tr>
         <td><%= activity.name %></td>
         <td><%= activity.description %></td>
-        <td><%= link_to 'Show', activity %></td>
-        <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
-        <td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Detail', edit_activity_path(activity), class:"btn btn-info" %></td>
+        <td><%= link_to 'X', activity, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"  %></td>
       </tr>
     <% end %>
   </tbody>
@@ -29,4 +30,3 @@
 </div>
 <br>
 
-<%= link_to 'New Activity', new_activity_path %>

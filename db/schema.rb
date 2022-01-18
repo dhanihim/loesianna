@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_28_045104) do
+ActiveRecord::Schema.define(version: 2022_01_14_135215) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
@@ -56,6 +56,10 @@ ActiveRecord::Schema.define(version: 2021_12_28_045104) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "client_activity_id"
+    t.integer "processlist_id"
+    t.index ["client_activity_id"], name: "index_client_activity_processlists_on_client_activity_id"
+    t.index ["processlist_id"], name: "index_client_activity_processlists_on_processlist_id"
   end
 
   create_table "client_personal_files", force: :cascade do |t|
@@ -109,6 +113,8 @@ ActiveRecord::Schema.define(version: 2021_12_28_045104) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "activity_id"
+    t.index ["activity_id"], name: "index_processlists_on_activity_id"
   end
 
 end

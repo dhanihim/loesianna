@@ -31,10 +31,10 @@ h6 {
 }
 
 .container #tableBox
-{
-   padding: 30px 5% 50px 5%; 
-   background-color: white; 
-   border-radius: 20px;
-   margin-bottom: 50px;
-   margin-top: 15px;
+{   
+  padding: 30px 5% 50px 5%; 
+  background-color: white; 
+  border-radius: 20px;
+  margin-bottom: 50px;
+  margin-top: 15px;
 }

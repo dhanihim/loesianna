@@ -1,5 +1,10 @@
-<h1>New Processlist</h1>
+<h3>Proses Baru</h3>
 
-<%= render 'form', processlist: @processlist %>
+<br>
 
-<%= link_to 'Back', processlists_path %>
+<div class="container" id="tableBox">
+	<%= render 'form', processlist: @processlist %>
+
+	<br>
+	<%= link_to 'Kembali', processlists_path, class:"btn btn-secondary" %>
+</div>

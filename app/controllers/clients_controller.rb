@@ -20,7 +20,7 @@ class ClientsController < ApplicationController
 
   # GET /clients/1 or /clients/1.json
   def show
-    @client_activity = ClientActivity.where("client_id = ?", params[:id])
+    @client_activity = ClientActivity.where("client_id = ? AND deleted = 0", params[:id])
 
     @status_array = ["Tidak Aktif","Proses","Selesai","Dihapus"]
     @color_array = ["grey","blue","green","red"]

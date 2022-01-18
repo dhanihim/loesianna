@@ -10,7 +10,7 @@
     <tr>
       <th>Name</th>
       <th>Description</th>
-      <th colspan="3"></th>
+      <th colspan="2" style="width: 5%;"></th>
     </tr>
   </thead>
 
@@ -19,9 +19,8 @@
       <tr>
         <td><%= personal_file.name %></td>
         <td><%= personal_file.description %></td>
-        <td><%= link_to 'Show', personal_file %></td>
-        <td><%= link_to 'Edit', edit_personal_file_path(personal_file) %></td>
-        <td><%= link_to 'Destroy', personal_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_personal_file_path(personal_file), class:"btn btn-info"  %></td>
+        <td><%= link_to 'X', personal_file, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"  %></td>
       </tr>
     <% end %>
   </tbody>

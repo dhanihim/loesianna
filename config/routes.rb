@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :client_activity_processlists
+  resources :client_activity_processlists do 
+    member do 
+      get :finish
+    end
+  end
   resources :processlists
   resources :datalists
   resources :client_activity_datalists do 
@@ -11,6 +15,7 @@ Rails.application.routes.draw do
     member do 
       get :datalist
       get :processlist
+      get :summary
     end
   end
   resources :activities
@@ -23,5 +28,6 @@ Rails.application.routes.draw do
   end
   
   root 'home#index'
+  get 'home/calendar'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

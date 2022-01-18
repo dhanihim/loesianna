@@ -17,6 +17,9 @@ class ActivitiesController < ApplicationController
 
   # GET /activities/1/edit
   def edit
+    @datalists = Datalist.where("activity_id = ?", params[:id])
+
+    @processlists = Processlist.where("activity_id = ?", params[:id])
   end
 
   # POST /activities or /activities.json

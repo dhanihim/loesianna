@@ -1,0 +1,82 @@
+<!-- <h2>Ringkasan Kegiatan Klien</h2>
+
+<br>
+ -->
+<div class="container" id="tableBox">
+	<%= form_with do |form| %>
+		<% @client_activity.each do |client_activity| %>
+
+		  <div class="row">
+			  <div class="col-md-12 col-xs-12">
+			    <div class="field form-group">
+        		<%= form.label "Klien"%>
+					  <%= form.text_field :client_name, value: client_activity.client.name , class:"form-control", disabled:"true"  %>
+					</div>
+			  </div>  
+			</div>
+
+			<div class="row">
+		    <div class="col-md-12 col-xs-12">
+		      <div class="field form-group">
+		        <%= form.label "Aktifitas"%>
+		        <%= form.text_field :activity_name , class:"form-control", value: client_activity.activity.name , disabled:"true"   %>
+		      </div>
+		    </div>  
+		  </div>
+
+		  <div class="row">
+				<div class="col-md-6 col-xs-12">
+				  <div class="field form-group">
+				    <%= form.label "Obyek"%>
+				    <%= form.text_field :object , class:"form-control", value: client_activity.object , disabled:"true"   %>
+				  </div>
+
+				  <div class="field form-group">
+				    <%= form.label "YBS / Rekanan / Bank" %>
+				    <%= form.text_field :associate , class:"form-control", value: client_activity.associate , disabled:"true"  %>
+				  </div>
+
+				  <div class="field form-group">
+				    <%= form.label "Asisten" %>
+				    <%= form.text_field :assistant , class:"form-control", value: client_activity.assistant , disabled:"true"  %>
+				  </div>
+
+				  <div class="field form-group">
+				    <%= form.label "Tanggal Kadaluarsa Kegiatan" %>
+				    <%= form.text_field :activity_expired, class:'form-control', value: client_activity.activity_expired , disabled:"true" %>
+				  </div>
+
+				  <div class="field form-group">
+				    <%= form.label "Tanggal Kadaluarsa Sertifikat" %>
+				    <%= form.text_field :certificate_expired, class:'form-control', value: client_activity.certificate_expired , disabled:"true" %>
+				  </div>
+				</div>
+
+				<div class="col-md-6 col-xs-12">
+				  <div class="field form-group">
+				    <%= form.label "Tanggal Akta" %>
+				    <%= form.text_field :created_at, class:'form-control', value: client_activity.created_at , disabled:"true" %>
+				    <!-- form.date_field :certificate_expired, :value => Time.now.strftime('%Y-%m-%d'), class:'form-control', required:'true', disabled:'true' -->
+				  </div>
+
+				  <div class="field form-group">
+				    <%= form.label "Nomor Akta" %>
+				    <%= form.text_field :serial_number , class:"form-control", value: client_activity.serial_number , disabled:"true"  %>
+				  </div>
+
+				  <div class="field form-group">
+				    <%= form.label "Lokasi Berkas Offline" %>
+				    <%= form.text_field :offline_location , class:"form-control", value: client_activity.offline_location , disabled:"true" %>
+				  </div>
+
+				  <div class="field form-group">
+				    <%= form.label "Keterangan" %>
+				    <%= form.text_area :description , class:"form-control", style:"height:150px", value: client_activity.description , disabled:"true"  %>
+				  </div>
+				</div>
+			</div>
+
+		<% end %>
+	<% end %>
+</div>
+

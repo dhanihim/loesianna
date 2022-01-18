@@ -1,6 +1,23 @@
 class ClientActivityProcesslistsController < ApplicationController
   before_action :set_client_activity_processlist, only: %i[ show edit update destroy ]
 
+  def finish
+      session[:return_to] ||= request.referer
+
+      @client_activity_processlist = ClientActivityProcesslist.find(params[:id])
+      @client_activity_processlist.status = 2
+
+      respond_to do |format|
+        if @client_activity_processlist.save
+          format.html { redirect_to session.delete(:return_to), notice: "Client activity processlist was successfully updated." }
+          format.json { render :show, status: :created, location: @client_activity_processlist }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @client_activity_processlist.errors, status: :unprocessable_entity }
+        end
+      end
+  end
+
   # GET /client_activity_processlists or /client_activity_processlists.json
   def index
     @client_activity_processlists = ClientActivityProcesslist.all
@@ -17,6 +34,7 @@ class ClientActivityProcesslistsController < ApplicationController
 
   # GET /client_activity_processlists/1/edit
   def edit
+    session[:return_to] ||= request.referer
   end
 
   # POST /client_activity_processlists or /client_activity_processlists.json
@@ -36,9 +54,14 @@ class ClientActivityProcesslistsController < ApplicationController
 
   # PATCH/PUT /client_activity_processlists/1 or /client_activity_processlists/1.json
   def update
+
     respond_to do |format|
       if @client_activity_processlist.update(client_activity_processlist_params)
-        format.html { redirect_to @client_activity_processlist, notice: "Client activity processlist was successfully updated." }
+        
+        @client_activity_processlist.status = 1
+        @client_activity_processlist.save
+
+        format.html { redirect_to session.delete(:return_to), notice: "Client activity processlist was successfully updated." }
         format.json { render :show, status: :ok, location: @client_activity_processlist }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -64,6 +87,6 @@ class ClientActivityProcesslistsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def client_activity_processlist_params
-      params.require(:client_activity_processlist).permit(:target_start, :actual_start, :status, :description)
+      params.require(:client_activity_processlist).permit(:target_start, :actual_start, :status, :description, :client_activity_id, :processlist_id)
     end
 end

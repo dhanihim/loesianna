@@ -1,11 +1,12 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Client Activities</h1>
+<h3>Kegiatan Klien</h3>
+<br>
 
 <div class="table-responsive" id="tableBox">
 <table class="table">
   <thead>
     <tr>
+      <th>ID</th>
+      <th>Klien</th>
       <th>Object</th>
       <th>Associate</th>
       <th>Assistant</th>
@@ -15,14 +16,15 @@
       <th>Offline location</th>
       <th>Description</th>
       <th>Status</th>
-      <th>Deleted</th>
-      <th colspan="3"></th>
+      <th colspan="3" style="width:5%"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @client_activities.each do |client_activity| %>
       <tr>
+        <td><%= client_activity.id %></td>
+        <td><%= client_activity.client.name %></td>
         <td><%= client_activity.object %></td>
         <td><%= client_activity.associate %></td>
         <td><%= client_activity.assistant %></td>
@@ -31,16 +33,12 @@
         <td><%= client_activity.serial_number %></td>
         <td><%= client_activity.offline_location %></td>
         <td><%= client_activity.description %></td>
-        <td><%= client_activity.status %></td>
-        <td><%= client_activity.deleted %></td>
-        <td><%= link_to 'Show', client_activity %></td>
-        <td><%= link_to 'Edit', edit_client_activity_path(client_activity) %></td>
-        <td><%= link_to 'Destroy', client_activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td style="color:<%= @color_array[client_activity.status.to_f] %>"><strong><%= @status_array[client_activity.status.to_f] %></strong></td>
+        <td><%= link_to 'Edit', edit_client_activity_path(client_activity), class:"btn btn-info" %></td>
+        <td><%= link_to 'X', client_activity, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 </div>
 <br>
-
-<%= link_to 'New Client Activity', new_client_activity_path %>

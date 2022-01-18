@@ -6,8 +6,27 @@
 
   <div class="container">
     <table class="table">
-      
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Rencana Proses</th>
+          <th>Status</th>
+          <th colspan="1" style="width: 5%;"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @client_activity_processlist.each do |client_activity_processlist| %>
+          <tr>
+            <td><%= client_activity_processlist.processlist.name %></td>
+            <td><%= client_activity_processlist.target_start %></td>
+            <td style="color:<%= @color_array[client_activity_processlist.status.to_f] %>"><strong><%= @status_array[client_activity_processlist.status.to_f] %></strong></td>
+            <td style="width: 5%;"><%= link_to 'Edit', edit_client_activity_processlist_path(client_activity_processlist.id), class:"btn btn-info" %></td>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
   </div>
-
+  <br>
+  <%= link_to 'Selesaikan', edit_client_activity_path(params[:id]), class:"btn btn-success btn-block" %>
 </div>

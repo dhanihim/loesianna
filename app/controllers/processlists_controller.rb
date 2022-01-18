@@ -25,7 +25,7 @@ class ProcesslistsController < ApplicationController
 
     respond_to do |format|
       if @processlist.save
-        format.html { redirect_to @processlist, notice: "Processlist was successfully created." }
+        format.html { redirect_to edit_activity_path(@processlist.activity_id), notice: "Processlist was successfully created." }
         format.json { render :show, status: :created, location: @processlist }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class ProcesslistsController < ApplicationController
   def update
     respond_to do |format|
       if @processlist.update(processlist_params)
-        format.html { redirect_to @processlist, notice: "Processlist was successfully updated." }
+        format.html { redirect_to edit_activity_path(@processlist.activity_id), notice: "Processlist was successfully updated." }
         format.json { render :show, status: :ok, location: @processlist }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,7 +51,7 @@ class ProcesslistsController < ApplicationController
   def destroy
     @processlist.destroy
     respond_to do |format|
-      format.html { redirect_to processlists_url, notice: "Processlist was successfully destroyed." }
+      format.html { redirect_to edit_activity_path(@processlist.activity_id), notice: "Processlist was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -64,6 +64,6 @@ class ProcesslistsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def processlist_params
-      params.require(:processlist).permit(:name, :description)
+      params.require(:processlist).permit(:name, :description, :activity_id)
     end
 end

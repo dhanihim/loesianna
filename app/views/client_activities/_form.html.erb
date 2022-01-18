@@ -1,6 +1,5 @@
-<div class="container" id="tableBox">
-
 <% if request.original_url.include?("edit") && params[:activity_id].nil? %>
+  <div class="container" id="tableBox">
   <%= form_with(model: client_activity) do |form| %>
     <% if client_activity.errors.any? %>
       <div id="error_explanation">
@@ -97,8 +96,58 @@
         </div>
       </div>
     </div>
+  </div>
   <% end %>
+
+  <div class="container" id="tableBox">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Unggahan Data</th>
+          <th colspan="2" style="width: 5%;"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @client_activity_datalist.each do |client_activity_datalist| %>
+          <tr>
+            <td><%= client_activity_datalist.datalist.name %></td>
+            <td style="width: 5%;"><%= link_to 'Unggah', client_activity_url, class:"btn btn-secondary" %></td>
+            <td style="width: 5%;"><%= link_to 'Unduh', client_activity_url, class:"btn btn-success" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div> 
+
+  <div class="container" id="tableBox">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Rencana Proses</th>
+          <th>Aktual Proses</th>
+          <th>Status</th>
+          <th colspan="1" style="width: 5%;"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @client_activity_processlist.each do |client_activity_processlist| %>
+          <tr>
+            <td><%= client_activity_processlist.processlist.name %></td>
+            <td><%= client_activity_processlist.target_start %></td>
+            <td><%= client_activity_processlist.actual_start %></td>
+            <td style="color:<%= @color_array[client_activity_processlist.status.to_f] %>"><strong><%= @status_array[client_activity_processlist.status.to_f] %></strong></td>
+            <td style="width: 5%;"><%= link_to 'Edit', edit_client_activity_processlist_path(client_activity_processlist.id), class:"btn btn-info" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>  
 <% else %>
+  <div class="container" id="tableBox">
+    
   <% if params[:activity_id].nil? %>
     <h5 style="color:black; text-align:right">Halaman 1 dari 4</h5>
     <br>
@@ -116,6 +165,7 @@
     </center>
     <% end %>
   <% else %>
+
     <h5 style="color:black; text-align:right">Halaman 2 dari 4</h5>
     <br>
     <%= form_with(model: client_activity) do |form| %>
@@ -218,5 +268,5 @@
       </div>
     <% end %>
   <% end %>
+  </div>
 <% end %>
-</div>

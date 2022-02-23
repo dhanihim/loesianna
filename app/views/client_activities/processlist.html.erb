@@ -1,5 +1,3 @@
-<h3>Kegiatan Baru</h3>
-<br>
 <div class="table-responsive" id="tableBox">
   <h5 style="color:black; text-align:right">Halaman 4 dari 4</h5>
   <br>
@@ -20,13 +18,24 @@
           <tr>
             <td><%= client_activity_processlist.processlist.name %></td>
             <td><%= client_activity_processlist.target_start %></td>
+            
+            <% if client_activity_processlist.status.nil? %>
+              <% @uncheck = 0 %>
+            <% end %>
+            
             <td style="color:<%= @color_array[client_activity_processlist.status.to_f] %>"><strong><%= @status_array[client_activity_processlist.status.to_f] %></strong></td>
-            <td style="width: 5%;"><%= link_to 'Edit', edit_client_activity_processlist_path(client_activity_processlist.id), class:"btn btn-info" %></td>
+            <td style="width: 5%;"><%= link_to 'Ubah', edit_client_activity_processlist_path(client_activity_processlist.id), class:"btn btn-info" %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
   <br>
+
+  <% if @uncheck==1 %>
   <%= link_to 'Selesaikan', edit_client_activity_path(params[:id]), class:"btn btn-success btn-block" %>
+  <% else %>
+  <p>*Ubah dan masukkan tanggal rencana proses untuk melanjutkan</p>
+  <%= link_to 'Selesaikan', edit_client_activity_path(params[:id]), class:"btn btn-secondary btn-block disabled" %>
+  <% end %>
 </div>

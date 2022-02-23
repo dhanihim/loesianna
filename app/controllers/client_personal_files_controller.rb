@@ -64,6 +64,6 @@ class ClientPersonalFilesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def client_personal_file_params
-      params.require(:client_personal_file).permit(:link, :description, :client_id, :personal_file_id)
+      params.require(:client_personal_file).permit(:link, :description, :client_id, :personal_file_id, :file)
     end
 end

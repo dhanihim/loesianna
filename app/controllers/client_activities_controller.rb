@@ -28,6 +28,8 @@
   end
 
   def processlist
+    @uncheck = 1
+
     @status_array = ["Belum Dimulai","Proses","Selesai","Terlambat"]
     @color_array = ["grey","blue","green","red"]
 

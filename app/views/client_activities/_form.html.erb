@@ -50,19 +50,19 @@
 
         <div class="field form-group">
           <%= form.label :activity_expired, "Tanggal Kadaluarsa Kegiatan" %>
-          <%= form.date_field :activity_expired, class:'form-control', required:'true' %>
+          <%= form.date_field :activity_expired, class:'form-control' %>
         </div>
 
         <div class="field form-group">
           <%= form.label :certificate_expired, "Tanggal Kadaluarsa Sertifikat" %>
-          <%= form.date_field :certificate_expired, class:'form-control', required:'true' %>
+          <%= form.date_field :certificate_expired, class:'form-control' %>
         </div>
       </div>
 
       <div class="col-md-6 col-xs-12">
         <div class="field form-group">
           <%= form.label :created_at, "Tanggal Akta" %>
-          <%= form.date_field :certificate_expired, :value => Time.now.strftime('%Y-%m-%d'), class:'form-control', required:'true', disabled:'true' %>
+          <%= form.date_field :certificate_expired, :value => Time.now.strftime('%Y-%m-%d'), class:'form-control' %>
         </div>
 
         <div class="field form-group">
@@ -220,19 +220,19 @@
 
           <div class="field form-group">
             <%= form.label :activity_expired, "Tanggal Kadaluarsa Kegiatan" %>
-            <%= form.date_field :activity_expired, class:'form-control', required:'true' %>
+            <%= form.date_field :activity_expired, class:'form-control' %>
           </div>
 
           <div class="field form-group">
             <%= form.label :certificate_expired, "Tanggal Kadaluarsa Sertifikat" %>
-            <%= form.date_field :certificate_expired, class:'form-control', required:'true' %>
+            <%= form.date_field :certificate_expired, class:'form-control'%>
           </div>
         </div>
 
         <div class="col-md-6 col-xs-12">
           <div class="field form-group">
             <%= form.label :created_at, "Tanggal Akta" %>
-            <%= form.date_field :certificate_expired, :value => Time.now.strftime('%Y-%m-%d'), class:'form-control', required:'true', disabled:'true' %>
+            <%= form.date_field :certificate_expired, :value => Time.now.strftime('%Y-%m-%d'), class:'form-control' %>
           </div>
 
           <div class="field form-group">

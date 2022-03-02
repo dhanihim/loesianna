@@ -1,12 +1,11 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Client Personal Files</h1>
 
-<table>
+<div class="container" id="tableBox">
+<table class="table">
   <thead>
     <tr>
-      <th>Link</th>
-      <th>Description</th>
+      <th>Client</th>
+      <th>Personal File Name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,8 +13,8 @@
   <tbody>
     <% @client_personal_files.each do |client_personal_file| %>
       <tr>
-        <td><%= client_personal_file.link %></td>
-        <td><%= client_personal_file.description %></td>
+        <td><%= client_personal_file.client.name %></td>
+        <td><%= client_personal_file.personal_file.name %></td>
         <td><%= link_to 'Show', client_personal_file %></td>
         <td><%= link_to 'Edit', edit_client_personal_file_path(client_personal_file) %></td>
         <td><%= link_to 'Destroy', client_personal_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -23,6 +22,7 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
 

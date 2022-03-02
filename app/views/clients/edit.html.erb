@@ -7,12 +7,15 @@
 	<div class="table-responsive">
 		<table class="table">
 			<tbody>
-		    <% @personal_files.each do |personal_file| %>
+		    <% @client_personal_files.each do |client_personal_file| %>
 		      <tr>
-		        <td><%= personal_file.name %></td>
-		        <td><%= personal_file.description %></td>
-		        <td style="width: 5%;"><%= link_to 'Unggah', personal_file, class:"btn btn-secondary" %></td>
-		        <td style="width: 5%;"><%= link_to 'Unduh', edit_personal_file_path(personal_file), class:"btn btn-success" %></td>
+		        <td><%= client_personal_file.personal_file.name %></td>
+		        <% if !client_personal_file.file.filename.nil? %>
+	            <td style="width: 5%;"><%= link_to 'Unduh', client_personal_file.file, download: "" , class:"btn btn-success" %></td>
+	            <% else %>
+	              <td></td>
+	            <% end %>
+	            <td style="width: 5%;"><%= link_to 'Unggah', edit_client_personal_file_path(client_personal_file.id), class:"btn btn-secondary" %></td>
 		      </tr>
 		    <% end %>
 		  </tbody>

@@ -17,6 +17,7 @@ class ClientPersonalFilesController < ApplicationController
 
   # GET /client_personal_files/1/edit
   def edit
+    session[:return_to] = request.referer
   end
 
   # POST /client_personal_files or /client_personal_files.json
@@ -38,7 +39,7 @@ class ClientPersonalFilesController < ApplicationController
   def update
     respond_to do |format|
       if @client_personal_file.update(client_personal_file_params)
-        format.html { redirect_to @client_personal_file, notice: "Client personal file was successfully updated." }
+        format.html { redirect_to session.delete(:return_to), notice: "Client personal file was successfully updated." }
         format.json { render :show, status: :ok, location: @client_personal_file }
       else
         format.html { render :edit, status: :unprocessable_entity }

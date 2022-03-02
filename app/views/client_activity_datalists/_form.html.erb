@@ -1,27 +1,36 @@
-<%= form_with(model: client_activity_datalist) do |form| %>
-  <% if client_activity_datalist.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(client_activity_datalist.errors.count, "error") %> prohibited this client_activity_datalist from being saved:</h2>
+<div class="container" id="tableBox">
+  <%= form_with(model: client_activity_datalist) do |form| %>
+    <% if client_activity_datalist.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(client_activity_datalist.errors.count, "error") %> prohibited this client_activity_datalist from being saved:</h2>
 
-      <ul>
-        <% client_activity_datalist.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <ul>
+          <% client_activity_datalist.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field form-group">
+      <p>
+        <% if !client_activity_datalist.file.filename.nil? %>
+          <strong>Unggahan terakhir:</strong>
+          <%= link_to 'Download', client_activity_datalist.file, download: "" %>
         <% end %>
-      </ul>
+      </p>
+
+      <%= form.file_field :file %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :description %>
+      <br>
+      <%= form.text_area :description, class:"form-control" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Tambahkan Data", class:"btn btn-primary"%>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :link %>
-    <%= form.text_field :link %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

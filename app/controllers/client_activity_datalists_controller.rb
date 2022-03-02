@@ -21,6 +21,7 @@ class ClientActivityDatalistsController < ApplicationController
 
   # GET /client_activity_datalists/1/edit
   def edit
+    session[:return_to] = request.referer
   end
 
   # POST /client_activity_datalists or /client_activity_datalists.json
@@ -42,7 +43,7 @@ class ClientActivityDatalistsController < ApplicationController
   def update
     respond_to do |format|
       if @client_activity_datalist.update(client_activity_datalist_params)
-        format.html { redirect_to @client_activity_datalist, notice: "Client activity datalist was successfully updated." }
+        format.html { redirect_to session.delete(:return_to), notice: "Client activity datalist was successfully updated." }
         format.json { render :show, status: :ok, location: @client_activity_datalist }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -68,6 +69,6 @@ class ClientActivityDatalistsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def client_activity_datalist_params
-      params.require(:client_activity_datalist).permit(:link, :description, :client_activity_id, :datalist_id)
+      params.require(:client_activity_datalist).permit(:link, :description, :file, :client_activity_id, :datalist_id)
     end
 end

@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Link:</strong>
   <%= @client_activity_datalist.link %>
@@ -9,6 +7,13 @@
   <strong>Description:</strong>
   <%= @client_activity_datalist.description %>
 </p>
+
+
+<p>
+  <strong>File:</strong>
+  <%= link_to 'Download', @client_activity_datalist.file, download: "" %>
+</p>
+
 
 <%= link_to 'Edit', edit_client_activity_datalist_path(@client_activity_datalist) %> |
 <%= link_to 'Back', client_activity_datalists_path %>

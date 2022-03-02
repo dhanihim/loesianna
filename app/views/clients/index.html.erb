@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h3>Daftar Klien</h3>
 <br>
 
@@ -29,7 +27,7 @@
             </td>
             <td><%= client.name %></td>
             <td><%= client.uid %></td>
-            <td><%= client.birthplace %>, <%= client.birthdate %></td>
+            <td><%= client.birthplace %>, <%= client.birthdate.to_s(:long) %></td>
             <td><%= client.address %>, <%= client.city %></td>
             <td><%= link_to 'Detail', client, class:'btn btn-info' %></td>
             <td><%= link_to 'X', client, method: :delete, data: { confirm: 'Hapus data klien?' }, class:'btn btn-danger' %></td>

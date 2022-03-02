@@ -1,7 +1,4 @@
-<h3>Klien Baru</h3>
-<br>
+<%= link_to 'Kembali', session[:return_to], class:"btn btn-secondary" %>
 
 <%= render 'form', client: @client %>
-
-<%= link_to 'Back', clients_path, class:"btn btn-secondary" %>
 

@@ -35,7 +35,7 @@
       <div class="col-md-6 col-xs-12">
         <div class="field form-group">
           <%= form.label :object, "Obyek"%>
-          <%= form.text_field :object , class:"form-control", required:'true'  %>
+          <%= form.text_field :object , class:"form-control", required:'true', autocomplete:"off" %>
         </div>
 
         <div class="field form-group">
@@ -62,7 +62,7 @@
       <div class="col-md-6 col-xs-12">
         <div class="field form-group">
           <%= form.label :created_at, "Tanggal Akta" %>
-          <%= form.date_field :certificate_expired, :value => Time.now.strftime('%Y-%m-%d'), class:'form-control' %>
+          <%= form.date_field :created_at, :value => Time.now.strftime('%Y-%m-%d'), class:'form-control' %>
         </div>
 
         <div class="field form-group">
@@ -112,8 +112,12 @@
         <% @client_activity_datalist.each do |client_activity_datalist| %>
           <tr>
             <td><%= client_activity_datalist.datalist.name %></td>
-            <td style="width: 5%;"><%= link_to 'Unggah', client_activity_url, class:"btn btn-secondary" %></td>
-            <td style="width: 5%;"><%= link_to 'Unduh', client_activity_url, class:"btn btn-success" %></td>
+            <% if !client_activity_datalist.file.filename.nil? %>
+              <td style="width: 5%;"><%= link_to 'Unduh', client_activity_datalist.file, download: "" , class:"btn btn-success" %></td>
+            <% else %>
+              <td></td>
+            <% end %>
+            <td style="width: 5%;"><%= link_to 'Unggah', edit_client_activity_datalist_path(client_activity_datalist.id), class:"btn btn-secondary" %></td>
           </tr>
         <% end %>
       </tbody>
@@ -136,8 +140,19 @@
         <% @client_activity_processlist.each do |client_activity_processlist| %>
           <tr>
             <td><%= client_activity_processlist.processlist.name %></td>
-            <td><%= client_activity_processlist.target_start %></td>
-            <td><%= client_activity_processlist.actual_start %></td>
+            
+            <% if !client_activity_processlist.target_start.nil? %>
+              <td><%= client_activity_processlist.target_start.to_s(:long) %></td>
+            <% else %>
+              <td></td>
+            <% end %>
+
+            <% if !client_activity_processlist.actual_start.nil? %>
+              <td><%= client_activity_processlist.actual_start.to_s(:long) %></td>
+            <% else %>
+              <td></td>
+            <% end %>
+
             <td style="color:<%= @color_array[client_activity_processlist.status.to_f] %>"><strong><%= @status_array[client_activity_processlist.status.to_f] %></strong></td>
             <td style="width: 5%;"><%= link_to 'Edit', edit_client_activity_processlist_path(client_activity_processlist.id), class:"btn btn-info" %></td>
           </tr>
@@ -205,7 +220,7 @@
         <div class="col-md-6 col-xs-12">
           <div class="field form-group">
             <%= form.label :object, "Obyek"%>
-            <%= form.text_field :object , class:"form-control", required:'true'  %>
+            <%= form.text_field :object , class:"form-control", required:'true', autocomplete:"off"  %>
           </div>
 
           <div class="field form-group">
@@ -232,7 +247,7 @@
         <div class="col-md-6 col-xs-12">
           <div class="field form-group">
             <%= form.label :created_at, "Tanggal Akta" %>
-            <%= form.date_field :certificate_expired, :value => Time.now.strftime('%Y-%m-%d'), class:'form-control' %>
+            <%= form.date_field :created_at, :value => Time.now.strftime('%Y-%m-%d'), class:'form-control' %>
           </div>
 
           <div class="field form-group">

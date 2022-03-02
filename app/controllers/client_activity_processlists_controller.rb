@@ -34,7 +34,7 @@ class ClientActivityProcesslistsController < ApplicationController
 
   # GET /client_activity_processlists/1/edit
   def edit
-    session[:return_to] ||= request.referer
+    session[:return_to] = request.referer
   end
 
   # POST /client_activity_processlists or /client_activity_processlists.json

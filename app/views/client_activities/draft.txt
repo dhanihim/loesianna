@@ -1,0 +1,30 @@
+<div class="table-responsive" id="tableBox">
+  <h5 style="color:black; text-align:right">Halaman 3 dari 4</h5>
+  <br>
+
+  <div class="container">
+    
+      <%= form_with(model: @client_activity) do |form| %>
+
+      <table class="table">
+        <tbody>
+          <% @client_activity_datalist.each do |client_activity_datalist| %>
+            <%= fields_for "client_activity_datalist[]", client_activity_datalist do |client_activity_datalist_form| %>
+              <tr>
+                <td><%= client_activity_datalist.datalist.name%>
+                <br><%= client_activity_datalist_form.file_field :file %></td>
+              </tr>
+            <% end %>
+          <% end %>    
+
+        </tbody>
+        <br>
+      </table>
+
+      <%= form.submit "Perbarui Unggahan", class:"btn btn-info"%>
+      <% end %>
+  </div>
+  <br>
+  
+  <%= link_to 'Lanjutkan', processlist_client_activity_path(params[:id], :activity_id => params[:activity_id]), class:"btn btn-primary btn-block" %>
+</div>

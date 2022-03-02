@@ -21,7 +21,7 @@
 	        <td><%= client_activity_processlist.client_activity.client.name %></td>
 	        <td><%= client_activity_processlist.client_activity.object %></td>
 	        <td><%= client_activity_processlist.processlist.name %></td>
-	        <td><%= client_activity_processlist.target_start %></td>
+	        <td><%= client_activity_processlist.target_start.to_s(:long) %></td>
 	        <td><%= client_activity_processlist.description %></td>
 	        <td><%= link_to 'Selesaikan', finish_client_activity_processlist_path(client_activity_processlist), class:"btn btn-success" %></td>
 	        <td><%= link_to 'Tunda', edit_client_activity_processlist_path(client_activity_processlist), class:"btn btn-warning" %></td>
@@ -56,7 +56,7 @@
 	        <td><%= client_activity_processlist.client_activity.client.name %></td>
 	        <td><%= client_activity_processlist.client_activity.object %></td>
 	        <td><%= client_activity_processlist.processlist.name %></td>
-	        <td><%= client_activity_processlist.target_start %></td>
+	        <td><%= client_activity_processlist.target_start.to_s(:long) %></td>
 	        <td><%= client_activity_processlist.description %></td>
 	        <td><%= link_to 'Selesaikan', client_activity_processlist, class:"btn btn-success" %></td>
 	        <td><%= link_to 'Tunda', edit_client_activity_processlist_path(client_activity_processlist), class:"btn btn-warning" %></td>
@@ -70,7 +70,7 @@
 	<br>
 	<br>
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-7">
 		<h5 style="color:black">Berkas yang Butuh Pembaruan < 90 Hari</h5>
 
 			<div class="table-responsive">
@@ -92,7 +92,7 @@
 			        <td><%= client_activity_certificate.client.name %></td>
 			        <td><%= client_activity_certificate.activity.name %></td>
 			        <td><%= client_activity_certificate.object %></td>
-			        <td><%= client_activity_certificate.certificate_expired %></td>
+			        <td><%= client_activity_certificate.certificate_expired.to_s(:long) %></td>
 			        <td><%= link_to 'Lihat', client_activity_certificate, class:"btn btn-info", class:"btn btn-info" %></td>
 			      </tr>
 			     <% end %>
@@ -124,7 +124,7 @@
 			        <td><%= client_activity_activity.client.name %></td>
 			        <td><%= client_activity_activity.activity.name %></td>
 			        <td><%= client_activity_activity.object %></td>
-			        <td><%= client_activity_activity.activity_expired %></td>
+			        <td><%= client_activity_activity.activity_expired.to_s(:long) %></td>
 			        <td><%= link_to 'Lihat', client_activity_activity, class:"btn btn-info", class:"btn btn-info" %></td>
 			      </tr>
 			     <% end %>
@@ -133,7 +133,7 @@
 			</table>
 			</div>	
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-5">
 			<h5 style="color:black">Daftar Ulang Tahun Klien</h5>
 			<div class='table-responsive'>
 			    <table class="table">
@@ -151,7 +151,7 @@
 			        <% @client_birthday.each do |client| %>
 			          <tr>
 			            <td><%= client.name %></td>
-			            <td><%= client.birthplace %>, <%= client.birthdate %></td>
+			            <td><%= client.birthplace %>, <%= client.birthdate.to_s(:long) %></td>
 			            <td><%= client.address %>, <%= client.city %></td>
 			          </tr>
 			        <% end %>

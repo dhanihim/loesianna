@@ -34,6 +34,20 @@ class ClientsController < ApplicationController
   # GET /clients/1/edit
   def edit
     @personal_files = PersonalFile.where("deleted = 0")
+
+    @personal_files.each do |personal_file|
+      checking = ClientPersonalFile.where("personal_file_id = ? AND client_id = ?", personal_file.id, params[:id]).count
+
+      if(checking==0)
+        @client_personal_file = ClientPersonalFile.new
+        @client_personal_file.personal_file_id = personal_file.id
+        @client_personal_file.client_id = params[:id]
+
+        @client_personal_file.save
+      end
+    end
+
+    @client_personal_files = ClientPersonalFile.where("client_id = ?", params[:id])
   end
 
   # POST /clients or /clients.json
@@ -42,6 +56,18 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       if @client.save
+
+        #ADDING PERSONAL FILES TO EACH CLIENT
+        @personal_files = PersonalFile.where("deleted = 0")
+
+        @personal_files.each do |personal_file|
+          @client_personal_file = ClientPersonalFile.new
+          @client_personal_file.personal_file_id = personal_file.id
+          @client_personal_file.client_id = @client.id
+
+          @client_personal_file.save
+        end
+
         format.html { redirect_to clients_url, notice: "Client was successfully created." }
         format.json { render :show, status: :created, location: @client }
       else

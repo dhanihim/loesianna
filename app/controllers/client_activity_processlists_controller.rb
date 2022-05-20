@@ -9,6 +9,19 @@ class ClientActivityProcesslistsController < ApplicationController
 
       respond_to do |format|
         if @client_activity_processlist.save
+
+          @total_done = ClientActivityProcesslist.where("client_activity_id = ? AND status = 2",@client_activity_processlist.client_activity_id).count
+          @total_process = ClientActivityProcesslist.where("client_activity_id = ?",@client_activity_processlist.client_activity_id).count
+
+          @client_activity = ClientActivity.find(@client_activity_processlist.client_activity_id);
+            
+          if(@total_done==(@total_process))
+            @client_activity.status = 2
+          end
+
+          #@client_activity.description = "Done "+@total_done.to_s+" | Process "+@total_process.to_s
+          @client_activity.save
+
           format.html { redirect_to session.delete(:return_to), notice: "Client activity processlist was successfully updated." }
           format.json { render :show, status: :created, location: @client_activity_processlist }
         else

@@ -17,7 +17,7 @@
             <tr>
               <td>Tempat Tanggal Lahir</td>
               <td>:</td>
-              <td><%= @client.birthplace %>, <%= @client.birthdate.to_s(:long) %></td>
+              <td><%= @client.birthplace %>, <%= @client.birthdate.to_formatted_s(:rfc822) %></td>
             </tr>
             <tr>
               <td>Alamat</td>

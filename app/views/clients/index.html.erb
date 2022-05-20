@@ -27,7 +27,7 @@
             </td>
             <td><%= client.name %></td>
             <td><%= client.uid %></td>
-            <td><%= client.birthplace %>, <%= client.birthdate.to_s(:long) %></td>
+            <td><%= client.birthplace %>, <%= client.birthdate.to_formatted_s(:rfc822) %></td>
             <td><%= client.address %>, <%= client.city %></td>
             <td><%= link_to 'Detail', client, class:'btn btn-info' %></td>
             <td><%= link_to 'X', client, method: :delete, data: { confirm: 'Hapus data klien?' }, class:'btn btn-danger' %></td>

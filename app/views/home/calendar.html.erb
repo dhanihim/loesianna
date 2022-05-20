@@ -151,7 +151,7 @@
 			        <% @client_birthday.each do |client| %>
 			          <tr>
 			            <td><%= client.name %></td>
-			            <td><%= client.birthplace %>, <%= client.birthdate.to_s(:long) %></td>
+			            <td><%= client.birthplace %>, <%= client.birthdate.to_formatted_s(:rfc822) %></td>
 			            <td><%= client.address %>, <%= client.city %></td>
 			          </tr>
 			        <% end %>

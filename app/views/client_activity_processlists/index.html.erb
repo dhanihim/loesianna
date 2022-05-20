@@ -2,9 +2,14 @@
 
 <h1>Client Activity Processlists</h1>
 
-<table>
+<div class="table-responsive" id="tableBox">
+<table class="table">
   <thead>
     <tr>
+      <th>Client</th>
+      <th>Client Activity ID</th>
+      <th>Object</th>
+      <th>Process</th>
       <th>Target start</th>
       <th>Actual start</th>
       <th>Status</th>
@@ -16,6 +21,10 @@
   <tbody>
     <% @client_activity_processlists.each do |client_activity_processlist| %>
       <tr>
+        <td><%= client_activity_processlist.client_activity.client.name %></td>
+        <td><%= client_activity_processlist.client_activity.id %></td>
+        <td><%= client_activity_processlist.client_activity.object %></td>
+        <td><%= client_activity_processlist.processlist.name %></td>
         <td><%= client_activity_processlist.target_start %></td>
         <td><%= client_activity_processlist.actual_start %></td>
         <td><%= client_activity_processlist.status %></td>
@@ -27,6 +36,7 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
 
